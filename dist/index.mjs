@@ -1,32 +1,43 @@
 //#region src/index.ts
-/** A simple port of a string builder like those found in C#, Java, and
-* Go.  This is useful where string concatenation would be very cumbersome
-* to manage.  This is NOT meant to be used for extremely large strings, as it is
-* not optimized for that.  It is meant to be used for small collections of strings that
-* need to be built up over time.
+/**
+* A simple string builder inspired by those found in C#, Java, and Go.
+* Useful where incremental string construction would be cumbersome to
+* manage with plain concatenation.
 */
 var StringBuilder = class {
-	/** The array of values to hold on to */
-	values = [];
-	/** Creates an instance of the string builder with optional initial input */
-	constructor(value = "") {
-		if (value !== null && value !== void 0 && value.length > 0) this.values = new Array(value);
+	#values = [];
+	#newline;
+	/** Creates an instance of the string builder with an optional initial value and configurable line ending. */
+	constructor(value, newline = "\n") {
+		this.#newline = newline;
+		if (value) this.#values.push(value);
 	}
-	/** Appends a value to the string builder */
-	append(value = "") {
-		if (value !== null && value !== void 0 && value.length > 0) this.values.push(value);
+	/** The total character length of the accumulated string. */
+	get length() {
+		return this.#values.reduce((sum, s) => sum + s.length, 0);
 	}
-	/** Appends a value and a new line to the string builder */
-	appendLine(value = "") {
-		if (value !== null && value !== void 0 && value.length > 0) this.values.push(value + "\r\n");
+	/** Whether the builder contains no content. */
+	get isEmpty() {
+		return this.#values.length === 0;
 	}
-	/** Clears the string builder */
+	/** Appends a value to the string builder. */
+	append(value) {
+		if (value) this.#values.push(value);
+		return this;
+	}
+	/** Appends a value followed by a newline. Called with no argument, appends a blank line. */
+	appendLine(value) {
+		this.#values.push((value ?? "") + this.#newline);
+		return this;
+	}
+	/** Clears all accumulated content. */
 	clear() {
-		this.values = new Array();
+		this.#values.length = 0;
+		return this;
 	}
-	/** Returns the string representation of the string builder */
+	/** Returns the accumulated string. */
 	toString() {
-		return this.values.join("");
+		return this.#values.join("");
 	}
 };
 //#endregion

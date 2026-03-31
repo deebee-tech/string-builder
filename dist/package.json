@@ -1,6 +1,6 @@
 {
    "name": "@deebeetech/string-builder",
-   "version": "1.0.0",
+   "version": "2.0.0",
    "description": "A simple port of a string builder like those found in C#, Java, and Go.  This is useful where string concatenation would be very cumbersome to manage.  This is NOT meant to be used for extremely large strings, as it is not optimized for that.  It is meant to be used for small collections of strings that need to be built up over time.",
    "homepage": "https://github.com/deebee-tech/string-builder",
    "license": "MIT",
@@ -14,15 +14,15 @@
       "url": "https://github.com/deebee-tech/string-builder"
    },
    "type": "module",
-   "main": "dist/index.mjs",
+   "main": "index.mjs",
    "exports": {
       ".": {
-         "types": "./dist/index.d.mts",
-         "import": "./dist/index.mjs",
-         "require": "./dist/index.cjs"
+         "types": "./index.d.mts",
+         "import": "./index.mjs",
+         "require": "./index.cjs"
       }
    },
-   "types": "dist/index.d.mts",
+   "types": "index.d.mts",
    "publishConfig": {
       "access": "public"
    },
