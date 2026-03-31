@@ -1,41 +1,52 @@
-/** A simple port of a string builder like those found in C#, Java, and
- * Go.  This is useful where string concatenation would be very cumbersome
- * to manage.  This is NOT meant to be used for extremely large strings, as it is
- * not optimized for that.  It is meant to be used for small collections of strings that
- * need to be built up over time.
+/**
+ * A simple string builder inspired by those found in C#, Java, and Go.
+ * Useful where incremental string construction would be cumbersome to
+ * manage with plain concatenation.
  */
 export default class StringBuilder {
-  /** The array of values to hold on to */
-  public values: string[] = [];
+   #values: string[] = [];
+   #newline: string;
 
-  /** Creates an instance of the string builder with optional initial input */
-  public constructor(value = "") {
-    if (value !== null && value !== undefined && value.length > 0) {
-      this.values = new Array(value);
-    }
-  }
+   /** Creates an instance of the string builder with an optional initial value and configurable line ending. */
+   public constructor(value?: string, newline = "\n") {
+      this.#newline = newline;
+      if (value) {
+         this.#values.push(value);
+      }
+   }
 
-  /** Appends a value to the string builder */
-  public append(value = ""): void {
-    if (value !== null && value !== undefined && value.length > 0) {
-      this.values.push(value);
-    }
-  }
+   /** The total character length of the accumulated string. */
+   public get length(): number {
+      return this.#values.reduce((sum, s) => sum + s.length, 0);
+   }
 
-  /** Appends a value and a new line to the string builder */
-  public appendLine(value = ""): void {
-    if (value !== null && value !== undefined && value.length > 0) {
-      this.values.push(value + "\r\n");
-    }
-  }
+   /** Whether the builder contains no content. */
+   public get isEmpty(): boolean {
+      return this.#values.length === 0;
+   }
 
-  /** Clears the string builder */
-  public clear(): void {
-    this.values = new Array<string>();
-  }
+   /** Appends a value to the string builder. */
+   public append(value?: string): this {
+      if (value) {
+         this.#values.push(value);
+      }
+      return this;
+   }
 
-  /** Returns the string representation of the string builder */
-  public toString(): string {
-    return this.values.join("");
-  }
+   /** Appends a value followed by a newline. Called with no argument, appends a blank line. */
+   public appendLine(value?: string): this {
+      this.#values.push((value ?? "") + this.#newline);
+      return this;
+   }
+
+   /** Clears all accumulated content. */
+   public clear(): this {
+      this.#values.length = 0;
+      return this;
+   }
+
+   /** Returns the accumulated string. */
+   public toString(): string {
+      return this.#values.join("");
+   }
 }

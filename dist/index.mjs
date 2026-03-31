@@ -30,6 +30,6 @@ var StringBuilder = class {
 	}
 };
 //#endregion
-module.exports = StringBuilder;
+export { StringBuilder as default };
 
-//# sourceMappingURL=index.cjs.map
+//# sourceMappingURL=index.mjs.map
