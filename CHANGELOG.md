@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/deebee-tech/string-builder/compare/v2.0.0...v2.0.1) (2026-03-31)
+
+### Bug Fixes
+
+* **repo:** Lockfile update ([e317084](https://github.com/deebee-tech/string-builder/commit/e317084c511500d6d8de724dc60e5163d09aa772))
+* **repo:** Package updates ([e0a9eab](https://github.com/deebee-tech/string-builder/commit/e0a9eab5ddb00354d08c170cce9c20f7c6278ae0))
+
 ## [2.0.0](https://github.com/deebee-tech/string-builder/compare/v1.0.0...v2.0.0) (2026-03-31)
 
 ### ⚠ BREAKING CHANGES
