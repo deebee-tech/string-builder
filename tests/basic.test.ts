@@ -69,21 +69,13 @@ describe("StringBuilder", () => {
    });
 
    it("should support method chaining", () => {
-      const result = new StringBuilder()
-         .append("Hello")
-         .append(", ")
-         .appendLine("World!")
-         .append("Done")
-         .toString();
+      const result = new StringBuilder().append("Hello").append(", ").appendLine("World!").append("Done").toString();
 
       expect(result).toBe("Hello, World!\nDone");
    });
 
    it("should support chaining through clear", () => {
-      const result = new StringBuilder("stale")
-         .clear()
-         .append("fresh")
-         .toString();
+      const result = new StringBuilder("stale").clear().append("fresh").toString();
 
       expect(result).toBe("fresh");
    });
