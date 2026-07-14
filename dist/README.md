@@ -11,9 +11,9 @@ npm install @deebeetech/string-builder
 ## Usage
 
 ```typescript
-import StringBuilder from "@deebeetech/string-builder";
+import StringBuilder from '@deebeetech/string-builder';
 
-const sb = new StringBuilder().appendLine("Hello").append("World").toString();
+const sb = new StringBuilder().appendLine('Hello').append('World').toString();
 // "Hello\nWorld"
 ```
 

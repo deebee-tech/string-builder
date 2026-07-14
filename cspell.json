@@ -1,7 +1,15 @@
 {
-   "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
-   "version": "0.2",
-   "language": "en",
-   "words": ["deebeetech", "esbuild", "sebbo", "stringbuilder", "tsbuildinfo", "tseslint", "Weatherby"],
-   "ignorePaths": ["node_modules", "dist", "coverage", "pnpm-lock.yaml", "**/*.map"]
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "deebeetech",
+    "esbuild",
+    "sebbo",
+    "stringbuilder",
+    "tsbuildinfo",
+    "tseslint",
+    "Weatherby"
+  ],
+  "ignorePaths": ["node_modules", "dist", "coverage", "pnpm-lock.yaml", "**/*.map"]
 }
