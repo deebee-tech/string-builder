@@ -1,6 +1,13 @@
-# String Builder
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/deebee-tech/string-builder/main/assets/string-builder-lockup-dark.svg">
+    <img alt="String Builder" src="https://raw.githubusercontent.com/deebee-tech/string-builder/main/assets/string-builder-lockup-light.svg" width="415">
+  </picture>
+</p>
 
 A lightweight, chainable string builder for TypeScript and JavaScript.
+
+Part of the [DeeBee](https://github.com/deebee-tech) ecosystem.
 
 ## Install
 
