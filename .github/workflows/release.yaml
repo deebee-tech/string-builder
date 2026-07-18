@@ -29,10 +29,20 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+      - name: Typecheck
+        run: pnpm run typecheck
+      - name: Lint
+        run: pnpm run lint
+      - name: Format check
+        run: pnpm run format:check
+      - name: Spell check
+        run: pnpm run spell
       - name: Run tests
         run: pnpm run test
       - name: Build
         run: pnpm run build
+      - name: Verify dist package
+        run: pnpm run verify-dist
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}

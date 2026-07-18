@@ -2,7 +2,6 @@ import { configDefaults, defineConfig } from 'vitest/config';
 
 export default defineConfig({
   test: {
-    globals: true,
     coverage: {
       reporter: ['text', 'html'],
       exclude: [
@@ -10,6 +9,8 @@ export default defineConfig({
         'tests/*',
         'dist/*',
         'coverage/*',
+        'scripts/*',
+        'tmp/*',
         '.prettierrc.mjs',
         'eslint.config.mjs',
         'release.config.mjs',
@@ -21,6 +22,8 @@ export default defineConfig({
       ...configDefaults.exclude,
       'dist/*',
       'coverage/*',
+      'scripts/*',
+      'tmp/*',
       '.prettierrc.mjs',
       'eslint.config.mjs',
       'release.config.mjs',

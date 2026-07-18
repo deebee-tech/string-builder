@@ -5,7 +5,7 @@ import prettier from 'eslint-config-prettier';
 import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
-  { ignores: ['dist/', 'coverage/'] },
+  { ignores: ['dist/', 'coverage/', 'tmp/', 'scripts/'] },
   eslint.configs.recommended,
   tseslint.configs.recommended,
   prettier,
