@@ -1,3 +1,10 @@
+## [2.0.4](https://github.com/deebee-tech/string-builder/compare/v2.0.3...v2.0.4) (2026-07-18)
+
+
+### Bug Fixes
+
+* **pkg:** emit a publish-ready dist package on every build ([b6a1984](https://github.com/deebee-tech/string-builder/commit/b6a19846674796f2f09c9d417bfebfa1cfb7a364))
+
 ## [2.0.3](https://github.com/deebee-tech/string-builder/compare/v2.0.2...v2.0.3) (2026-07-15)
 
 ### Bug Fixes

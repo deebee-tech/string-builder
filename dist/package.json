@@ -1,6 +1,6 @@
 {
   "name": "@deebeetech/string-builder",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "A lightweight, chainable string builder for TypeScript and JavaScript. Inspired by builders in C#, Java, and Go — intended for small collections of strings, not extremely large buffers.",
   "homepage": "https://github.com/deebee-tech/string-builder",
   "license": "MIT",
