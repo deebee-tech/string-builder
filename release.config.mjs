@@ -19,6 +19,7 @@ export default {
       '@semantic-release/commit-analyzer',
       {
         // Default Angular parser rejects `feat!:`; conventionalcommits supports it.
+        // Pinned by tests/release.test.ts (analyzeCommits).
         preset: 'conventionalcommits',
       },
     ],
@@ -27,8 +28,8 @@ export default {
     // `{commits, parser, writer, whatBump}` export shape this plugin's bundled
     // conventional-changelog-writer@8 cannot read -- it silently rendered 2.0.2 and 2.0.3 as
     // bare headers with no body, hiding the exports-map fix that 2.0.2 shipped.
-    // Omitting it uses the writer's own version-locked angular preset, which parses `feat!:`
-    // and renders the breaking body. tests/release-notes.test.ts pins this.
+    // Omitting it uses the writer's own version-locked angular preset.
+    // tests/release.test.ts pins: bare plugin entry (no preset) + note bodies.
     '@semantic-release/release-notes-generator',
     [
       '@semantic-release/changelog',
@@ -40,30 +41,6 @@ export default {
       '@semantic-release/changelog',
       {
         changelogFile: './dist/CHANGELOG.md',
-      },
-    ],
-    [
-      'semantic-release-replace-plugin',
-      {
-        replacements: [
-          {
-            files: ['./dist/package.json'],
-            from: 'dist/index',
-            to: 'index',
-            results: [
-              {
-                file: './dist/package.json',
-                hasChanged: true,
-                // Must equal the `dist/index` count in package.json (main + types + the
-                // four nested exports conditions). The plugin asserts it and fails the
-                // release on a mismatch, so it changes whenever the exports map does.
-                numMatches: 6,
-                numReplacements: 6,
-              },
-            ],
-            countMatches: true,
-          },
-        ],
       },
     ],
     [
@@ -99,19 +76,20 @@ export default {
         npmPublish: false,
       },
     ],
+    // Registries before git + GitHub: npm and JSR are the product. Git commit of version
+    // bumps / changelog must not run before JSR, or a JSR failure leaves registries diverged
+    // while git already moved. GitHub release asset upload has also crashed (SQLEasy 2.0.0);
+    // keep it last so it cannot strand a registry publish.
+    '@sebbo2002/semantic-release-jsr',
     [
       '@semantic-release/git',
       {
-        assets: ['CHANGELOG.md', 'package.json', 'jsr.json', 'dist/**/*', 'coverage/**/*'],
+        // coverage/ is generated noise — do not commit it.
+        assets: ['CHANGELOG.md', 'package.json', 'jsr.json', 'dist/**/*'],
       },
     ],
-    // Registries BEFORE the GitHub release: on SQLEasy's 2.0.0 the GitHub plugin crashed uploading
-    // release assets ("invalid content-length header" from octokit/undici) and, because JSR was
-    // listed after it, JSR never published at all. npm/JSR are the product; the GitHub release is
-    // cosmetic, so it goes last where its failure can't strand a registry.
-    '@sebbo2002/semantic-release-jsr',
-    // No `assets` here: that upload is exactly what crashed, and the built files already ship via
-    // npm and JSR. The GitHub release still gets its generated notes.
+    // No `assets` here: that upload is exactly what crashed on SQLEasy, and the built files
+    // already ship via npm and JSR. The GitHub release still gets its generated notes.
     '@semantic-release/github',
   ],
 };

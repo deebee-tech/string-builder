@@ -1,10 +1,9 @@
 {
   "name": "@deebeetech/string-builder",
   "version": "2.0.3",
-  "description": "A simple port of a string builder like those found in C#, Java, and Go.  This is useful where string concatenation would be very cumbersome to manage.  This is NOT meant to be used for extremely large strings, as it is not optimized for that.  It is meant to be used for small collections of strings that need to be built up over time.",
+  "description": "A lightweight, chainable string builder for TypeScript and JavaScript. Inspired by builders in C#, Java, and Go — intended for small collections of strings, not extremely large buffers.",
   "homepage": "https://github.com/deebee-tech/string-builder",
   "license": "MIT",
-  "private": false,
   "author": {
     "name": "Sandy Weatherby",
     "email": "unicornbeachdiaries@gmail.com"
@@ -14,20 +13,20 @@
     "url": "https://github.com/deebee-tech/string-builder"
   },
   "type": "module",
-  "main": "dist/index.cjs",
+  "main": "index.cjs",
+  "types": "index.d.cts",
   "exports": {
     ".": {
       "import": {
-        "types": "./dist/index.d.mts",
-        "default": "./dist/index.mjs"
+        "types": "./index.d.mts",
+        "default": "./index.mjs"
       },
       "require": {
-        "types": "./dist/index.d.cts",
-        "default": "./dist/index.cjs"
+        "types": "./index.d.cts",
+        "default": "./index.cjs"
       }
     }
   },
-  "types": "dist/index.d.mts",
   "sideEffects": false,
   "publishConfig": {
     "access": "public"
@@ -46,37 +45,7 @@
     "ts",
     "js"
   ],
-  "scripts": {
-    "build": "tsdown && cpy './package.json' './dist/' && cpy './README.md' './dist/' && cpy './CHANGELOG.md' './dist/' && cpy './LICENSE' './dist/'",
-    "format": "prettier --write .",
-    "lint": "eslint .",
-    "spell": "cspell --no-progress \"**\"",
-    "test": "vitest --coverage",
-    "typecheck": "tsc --noEmit"
-  },
-  "packageManager": "pnpm@11.13.0",
-  "devDependencies": {
-    "@eslint/js": "^10.0.1",
-    "@sebbo2002/semantic-release-jsr": "^4.0.2",
-    "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/commit-analyzer": "^13.0.1",
-    "@semantic-release/git": "^10.0.1",
-    "@semantic-release/github": "^12.0.9",
-    "@semantic-release/npm": "^13.1.5",
-    "@semantic-release/release-notes-generator": "^14.1.1",
-    "@types/node": "^26.1.1",
-    "@vitest/coverage-v8": "^4.1.10",
-    "conventional-changelog-conventionalcommits": "^10.2.1",
-    "cpy-cli": "^7.0.0",
-    "cspell": "^10.0.1",
-    "eslint": "^10.7.0",
-    "eslint-config-prettier": "^10.1.8",
-    "prettier": "^3.9.5",
-    "semantic-release": "^25.0.7",
-    "semantic-release-replace-plugin": "^1.2.7",
-    "tsdown": "^0.22.7",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.64.0",
-    "vitest": "^4.1.10"
+  "engines": {
+    "node": ">=18"
   }
 }

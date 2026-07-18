@@ -1,7 +1,7 @@
 {
   "name": "@deebeetech/string-builder",
   "version": "2.0.3",
-  "description": "A simple port of a string builder like those found in C#, Java, and Go.  This is useful where string concatenation would be very cumbersome to manage.  This is NOT meant to be used for extremely large strings, as it is not optimized for that.  It is meant to be used for small collections of strings that need to be built up over time.",
+  "description": "A lightweight, chainable string builder for TypeScript and JavaScript. Inspired by builders in C#, Java, and Go — intended for small collections of strings, not extremely large buffers.",
   "homepage": "https://github.com/deebee-tech/string-builder",
   "license": "MIT",
   "private": false,
@@ -27,8 +27,11 @@
       }
     }
   },
-  "types": "dist/index.d.mts",
+  "types": "dist/index.d.cts",
   "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
   "publishConfig": {
     "access": "public"
   },
@@ -47,12 +50,14 @@
     "js"
   ],
   "scripts": {
-    "build": "tsdown && cpy './package.json' './dist/' && cpy './README.md' './dist/' && cpy './CHANGELOG.md' './dist/' && cpy './LICENSE' './dist/'",
+    "build": "tsdown && node ./scripts/prepare-dist.mjs",
     "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "lint": "eslint .",
     "spell": "cspell --no-progress \"**\"",
-    "test": "vitest --coverage",
-    "typecheck": "tsc --noEmit"
+    "test": "vitest run --coverage",
+    "typecheck": "tsc --noEmit",
+    "verify-dist": "node ./scripts/verify-dist.mjs"
   },
   "packageManager": "pnpm@11.13.0",
   "devDependencies": {
@@ -67,7 +72,6 @@
     "@types/node": "^26.1.1",
     "@vitest/coverage-v8": "^4.1.10",
     "conventional-changelog-conventionalcommits": "^10.2.1",
-    "cpy-cli": "^7.0.0",
     "cspell": "^10.0.1",
     "eslint": "^10.7.0",
     "eslint-config-prettier": "^10.1.8",

@@ -1,8 +1,9 @@
 //#region src/index.d.ts
 /**
- * A simple string builder inspired by those found in C#, Java, and Go.
+ * A lightweight string builder inspired by those found in C#, Java, and Go.
  * Useful where incremental string construction would be cumbersome to
- * manage with plain concatenation.
+ * manage with plain concatenation. Intended for small collections of strings,
+ * not extremely large buffers.
  */
 declare class StringBuilder {
   #private;
@@ -12,11 +13,14 @@ declare class StringBuilder {
   get length(): number;
   /** Whether the builder contains no content. */
   get isEmpty(): boolean;
-  /** Appends a value to the string builder. */
+  /** Appends a value to the string builder. Empty string and undefined are ignored. */
   append(value?: string): this;
-  /** Appends a value followed by a newline. Called with no argument, appends a blank line. */
+  /**
+   * Appends a value followed by a newline. Called with no argument, `undefined`,
+   * or an empty string, appends a blank line.
+   */
   appendLine(value?: string): this;
-  /** Clears all accumulated content. */
+  /** Clears all accumulated content. Does not reset the configured line ending. */
   clear(): this;
   /** Returns the accumulated string. */
   toString(): string;

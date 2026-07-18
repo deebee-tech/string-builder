@@ -1,7 +1,8 @@
 /**
- * A simple string builder inspired by those found in C#, Java, and Go.
+ * A lightweight string builder inspired by those found in C#, Java, and Go.
  * Useful where incremental string construction would be cumbersome to
- * manage with plain concatenation.
+ * manage with plain concatenation. Intended for small collections of strings,
+ * not extremely large buffers.
  */
 export default class StringBuilder {
   #values: string[] = [];
@@ -25,7 +26,7 @@ export default class StringBuilder {
     return this.#values.length === 0;
   }
 
-  /** Appends a value to the string builder. */
+  /** Appends a value to the string builder. Empty string and undefined are ignored. */
   public append(value?: string): this {
     if (value) {
       this.#values.push(value);
@@ -33,13 +34,16 @@ export default class StringBuilder {
     return this;
   }
 
-  /** Appends a value followed by a newline. Called with no argument, appends a blank line. */
+  /**
+   * Appends a value followed by a newline. Called with no argument, `undefined`,
+   * or an empty string, appends a blank line.
+   */
   public appendLine(value?: string): this {
     this.#values.push((value ?? '') + this.#newline);
     return this;
   }
 
-  /** Clears all accumulated content. */
+  /** Clears all accumulated content. Does not reset the configured line ending. */
   public clear(): this {
     this.#values.length = 0;
     return this;
