@@ -1,6 +1,14 @@
 ## [2.0.3](https://github.com/deebee-tech/string-builder/compare/v2.0.2...v2.0.3) (2026-07-15)
 
+### Bug Fixes
+
+* **repo:** Restore release-note bodies (notes for 2.0.2/2.0.3 originally shipped empty due to a skewed conventionalcommits preset on the notes generator)
+
 ## [2.0.2](https://github.com/deebee-tech/string-builder/compare/v2.0.1...v2.0.2) (2026-07-14)
+
+### Bug Fixes
+
+* **package:** Fix dual-package `exports` map so CommonJS `require` consumers resolve correctly
 
 ## [2.0.1](https://github.com/deebee-tech/string-builder/compare/v2.0.0...v2.0.1) (2026-03-31)
 
