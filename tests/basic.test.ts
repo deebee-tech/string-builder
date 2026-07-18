@@ -45,10 +45,23 @@ describe('StringBuilder', () => {
     expect(sb.toString()).toBe('first\nsecond');
   });
 
+  it('should append a blank line for appendLine with empty string', () => {
+    const sb = new StringBuilder();
+    sb.appendLine('');
+    expect(sb.toString()).toBe('\n');
+    expect(sb.isEmpty).toBe(false);
+  });
+
   it('should support a custom line ending', () => {
     const sb = new StringBuilder(undefined, '\r\n');
     sb.appendLine('line');
     expect(sb.toString()).toBe('line\r\n');
+  });
+
+  it('should keep the custom line ending after clear', () => {
+    const sb = new StringBuilder('stale', '\r\n');
+    sb.clear().appendLine('fresh');
+    expect(sb.toString()).toBe('fresh\r\n');
   });
 
   it('should clear the string builder', () => {
