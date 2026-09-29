@@ -20,6 +20,7 @@ export default {
       {
         // Default Angular parser rejects `feat!:`; conventionalcommits supports it.
         // Pinned by tests/release.test.ts (analyzeCommits).
+        // A chore(deps): commit alone cuts no release under conventionalcommits; ship dependency bumps as fix:.
         preset: 'conventionalcommits',
       },
     ],
